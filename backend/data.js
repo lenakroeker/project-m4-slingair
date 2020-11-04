@@ -61,6 +61,31 @@ const flights = {
     { id: "10E", isAvailable: true },
     { id: "10F", isAvailable: true },
   ],
+  WB465: [
+    { id: "1A", isAvailable: true },
+    { id: "1B", isAvailable: true },
+    { id: "1C", isAvailable: true },
+    { id: "1D", isAvailable: true },
+    { id: "1E", isAvailable: false },
+    { id: "1F", isAvailable: false },
+    { id: "2A", isAvailable: true },
+    { id: "2B", isAvailable: true },
+    { id: "2C", isAvailable: false },
+    { id: "2D", isAvailable: true },
+    { id: "2E", isAvailable: true },
+    { id: "2F", isAvailable: true },
+    { id: "3A", isAvailable: false },
+    { id: "3B", isAvailable: true },
+    { id: "3C", isAvailable: true },
+    { id: "3D", isAvailable: true },
+    { id: "3E", isAvailable: true },
+    { id: "3F", isAvailable: true },
+    { id: "4A", isAvailable: true },
+    { id: "4B", isAvailable: true },
+    { id: "4C", isAvailable: true },
+    { id: "4D", isAvailable: false },
+    { id: "4E", isAvailable: true }
+  ]
 };
 
 const reservations = [
@@ -71,6 +96,14 @@ const reservations = [
     givenName: "Marty",
     surname: "McFly",
     email: "marty@backfuture.com",
+  },
+  {
+    id: "77b33c23-3332-4ef2-bd71-be7a6430485f",
+    flight: "SA231",
+    seat: "4E",
+    givenName: "Lamb",
+    surname: "Chop",
+    email: "LC@lambchop.com",
   },
 ];
 

@@ -7,8 +7,15 @@ const Plane = ({ flightNumber, handleSeatSelect, selectedSeat }) => {
   const [seating, setSeating] = useState([]);
 
   useEffect(() => {
+    fetch(`/flights/${flightNumber}`)
+      .then(res => res.json())
+      .then(res => setSeating(res.data))
+      .then(res => console.log(res))
+
     // TODO: get seating data for selected flight
   }, [flightNumber]);
+
+  console.log(seating)
 
   return (
     <Wrapper>
@@ -30,14 +37,14 @@ const Plane = ({ flightNumber, handleSeatSelect, selectedSeat }) => {
                   </Available>
                 </>
               ) : (
-                <Unavailable>{seat.id}</Unavailable>
-              )}
+                  <Unavailable>{seat.id}</Unavailable>
+                )}
             </label>
           </SeatWrapper>
         ))
       ) : (
-        <Placeholder>Select a Flight to view seating.</Placeholder>
-      )}
+          <Placeholder>Select a Flight to view seating.</Placeholder>
+        )}
     </Wrapper>
   );
 };

@@ -5,7 +5,7 @@ import Form from "./Form";
 
 const initialState = { seat: "", givenName: "", surname: "", email: "" };
 
-const SeatSelect = ({ updateUserReservation }) => {
+const SeatSelect = ({ updateUserReservation, madeReservation, setMadeReservation }) => {
   const history = useHistory();
   const [flightNumber, setFlightNumber] = useState(null);
   const [formData, setFormData] = useState(initialState);
@@ -44,6 +44,30 @@ const SeatSelect = ({ updateUserReservation }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (validateEmail()) {
+      let data = { ...formData, flight: flightNumber }
+      fetch("/reservations", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          data
+        })
+      })
+        .then(res => {
+          console.log(res);
+          return res.json()
+        })
+        .then(res => {
+          console.log(res);
+          if (res.status == 201) {
+            localStorage.setItem("resId", res.id)
+            setMadeReservation(!madeReservation);
+            history.push("/confirmation")
+          } else if (res.status == 400) {
+            window.alert("error:" + res.error)
+          }
+        })
       // TODO: Send data to the server for validation/submission
       // TODO: if 201, add reservation id (received from server) to localStorage
       // TODO: if 201, redirect to /confirmed (push)
@@ -56,6 +80,7 @@ const SeatSelect = ({ updateUserReservation }) => {
       <FlightSelect
         flightNumber={flightNumber}
         handleFlightSelect={handleFlightSelect}
+        flightNumber={flightNumber}
       />
       <h2>Select your seat and Provide your information!</h2>
       <Form
